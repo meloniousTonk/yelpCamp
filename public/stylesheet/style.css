@@ -1,0 +1,59 @@
+.navbar {
+    margin-bottom: 30px;
+}
+
+nav li {
+    width: 80px;
+    text-align: center;
+}
+
+.jumbotron {
+    margin-bottom: 30px;
+}
+
+.jumbotron h1 {
+    font-size: 63px;
+}
+
+#tent-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.thumbnail img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.thumbnail {
+    padding: 0;
+    border: 1px solid #eaefff;
+    margin-bottom: 10px;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.delete-btn {
+    display: inline-block;
+}
+
+.btn-success {
+    margin-top: 16px;
+}
+
+.comment-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.well {
+    background-color: #f2f2f2;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 50px;
+}

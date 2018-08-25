@@ -1,0 +1,58 @@
+<% include partials/header%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">YelpCamp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="https://images.unsplash.com/photo-1528835333825-7dc1cee67e63?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=944a66e3473db6d1fda34029b072fc19&auto=format&fit=crop&w=800&q=60">
+                <div class="caption-full">
+                    <div>
+                        <h4><a>Camp</a> <span class="price float-right">$9.99/night</span></h4>
+                    </div>
+                    <p></p>
+                    <p>
+                        <em>Submitted by: Zosoist</em>
+                    </p>
+                    <a class="btn btn-sm btn-warning" href="#">Edit</a>
+                    <form class="delete-btn" action="#" method="POST" class="delete-form">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <div class="well container">
+                <div class="text-right">
+                    <button type="button" class="btn btn-success" href="" >Add A New Comment</button>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="margin-bottom: 10px">
+                            <strong>Bahman Alaedin</strong>
+                            <span class="float-right">Today</span>
+                        </div>
+                        <div>
+                            <span class="comment-text">Really Nice!</span>
+                            <div class="float-right">
+                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                                <form class="delete-btn" method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer%>
