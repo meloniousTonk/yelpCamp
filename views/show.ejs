@@ -12,43 +12,45 @@
         </div>
         <div class="col-md-9">
             <div class="thumbnail">
-                <img class="img-responsive" src="https://images.unsplash.com/photo-1528835333825-7dc1cee67e63?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=944a66e3473db6d1fda34029b072fc19&auto=format&fit=crop&w=800&q=60">
+                <img class="img-responsive" src=<%= campground.image%>>
                 <div class="caption-full">
                     <div>
-                        <h4><a>Camp</a> <span class="price float-right">$9.99/night</span></h4>
+                        <h4><a><%= campground.name%></a> <span class="price float-right"><%= campground.cost%>  $</span></h4>
                     </div>
-                    <p></p>
+                    <p><%= campground.description%></p>
                     <p>
                         <em>Submitted by: Zosoist</em>
                     </p>
-                    <a class="btn btn-sm btn-warning" href="#">Edit</a>
-                    <form class="delete-btn" action="#" method="POST" class="delete-form">
+                    <a class="btn btn-sm btn-warning" href="/campgrounds/<%= campground._id%>/edit">Edit</a>
+                    <form class="delete-btn" action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST" class="delete-form">
                         <button class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </div>
             </div>
             <div class="well container">
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" href="" >Add A New Comment</button>
+                    <a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new" >Add A New Comment</a>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div style="margin-bottom: 10px">
-                            <strong>Bahman Alaedin</strong>
-                            <span class="float-right">Today</span>
-                        </div>
-                        <div>
-                            <span class="comment-text">Really Nice!</span>
-                            <div class="float-right">
-                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                                <form class="delete-btn" method="POST">
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                    <%campground.comments.forEach(function (comment) { %>
+                        <div class="col-md-12">
+                            <div style="margin-bottom: 10px">
+                                <strong>Bahman Alaedin</strong>
+                                <span class="float-right">Today</span>
                             </div>
-                            <hr>
+                            <div>
+                                <span class="comment-text"><%= comment.text%></span>
+                                <div class="float-right">
+                                    <a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
+                                    <form class="delete-btn" action="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                                <hr>
+                            </div>
                         </div>
-                    </div>
+                    <% })%>
                 </div>
             </div>
         </div>
