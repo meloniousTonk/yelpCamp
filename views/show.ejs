@@ -19,33 +19,37 @@
                     </div>
                     <p><%= campground.description%></p>
                     <p>
-                        <em>Submitted by: Zosoist</em>
+                        <em>Submitted by: <%= campground.author.username %></em>
                     </p>
+                    <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
                     <a class="btn btn-sm btn-warning" href="/campgrounds/<%= campground._id%>/edit">Edit</a>
                     <form class="delete-btn" action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST" class="delete-form">
                         <button class="btn btn-danger btn-sm">Delete</button>
                     </form>
+                    <% } %>
                 </div>
             </div>
-            <div class="well container">
+            <div class="well container" style="margin-bottom: 100px">
                 <div class="text-right">
                     <a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new" >Add A New Comment</a>
                 </div>
                 <hr>
                 <div class="row">
-                    <%campground.comments.forEach(function (comment) { %>
+                    <% campground.comments.forEach(function (comment) { %>
                         <div class="col-md-12">
-                            <div style="margin-bottom: 10px">
-                                <strong>Bahman Alaedin</strong>
+                            <div style="margin-bottom: 3px">
+                                <strong><%= comment.author.username%></strong>
                                 <span class="float-right">Today</span>
                             </div>
                             <div>
                                 <span class="comment-text"><%= comment.text%></span>
                                 <div class="float-right">
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
                                     <a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
                                     <form class="delete-btn" action="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
+                                    <% } %>
                                 </div>
                                 <hr>
                             </div>

@@ -31,11 +31,11 @@
                         <a class="nav-link" href="/register">Sign Up</a>
                 </li>
                 <% } else { %>
-                <li class="nav-item active">
-                        <a class="nav-link" href="#" style="width: 200px" >Signed In As <%= currentUser.username%></a>
+                <li class="nav-item active" id="go-to-profile">
+                        <a class="nav-link" href="#">Signed In As <%= currentUser.username%></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/logout" style="margin-left: 100px">Logout</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
                 <% } %>
             </ul>

@@ -57,3 +57,11 @@ h3 {
     text-align: center;
     margin-bottom: 50px;
 }
+
+.btn-sm {
+    padding: 1px;
+}
+
+#go-to-profile {
+    width: 150px;
+}
