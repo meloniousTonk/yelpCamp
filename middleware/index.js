@@ -21,7 +21,7 @@ middlewareObj.checkCampgroundOwnership = function(req,res,next) {
                     next();
                 } else {
                     req.flash("error","You Don't Have The Permission To Do That!");
-                    res.redirect("back");
+                    res.redirect("/campgrounds/"+req.params.id);
                 }
             }
         });
@@ -42,7 +42,7 @@ middlewareObj.checkCommentOwnership = function(req,res,next) {
                     next();
                 } else {
                     req.flash("error","You Don't Have The Permission To Do That!");
-                    res.redirect("back");
+                    res.redirect("/campgrounds/"+req.params.id);
                 }
             }
         });

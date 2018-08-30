@@ -5,7 +5,7 @@ var User = require("../moduls/user");
 var middleware = require("../middleware");
 
 router.get("/",function (req,res) {
-    res.redirect("/campgrounds");
+    res.render("landing");
 });
 
 router.get("/register",function (req,res) {

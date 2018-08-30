@@ -10,7 +10,7 @@ router.get("/new",middleware.isLoggedIn ,function (req, res) {
             req.flash("error","Oops! Looks Like That There Is Something Wrong!");
             res.redirect("back");
         } else {
-            res.render("newComment",{campground: foundCampground});
+            res.render("comments/newComment",{campground: foundCampground});
         }
     });
 });
@@ -46,7 +46,7 @@ router.get("/:commentID/edit",middleware.isLoggedIn, middleware.checkCommentOwne
             res.redirect("back");
         } else {
             Comment.findOne({"_id" : req.params.commentID},function (err, foundComment) {
-                res.render("editComment",{campground: foundCampground, comment: foundComment});
+                res.render("comments/editComment",{campground: foundCampground, comment: foundComment});
             });
         }
     });

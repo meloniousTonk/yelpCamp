@@ -8,7 +8,9 @@ var express = require("express"),
     User = require("./moduls/user"),
     flash = require("connect-flash");
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+// mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb://moh.robati:rusty123@ds237922.mlab.com:37922/yelp_camp_test");
+
 
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),

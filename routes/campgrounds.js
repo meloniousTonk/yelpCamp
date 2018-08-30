@@ -4,15 +4,13 @@ var Campground = require("../moduls/campgrounds");
 var middleware = require("../middleware");
 
 router.get("/",function (req,res) {
-
     Campground.find({}, function(err, allCampgrounds){
         if(err){
             req.flash("error","Oops! Looks Like That There Is Something Wrong!");
         } else {
-            res.render("index",{campgrounds: allCampgrounds});
+            res.render("campgrounds/index",{campgrounds: allCampgrounds});
         }
     });
-
 });
 
 router.post("/", middleware.isLoggedIn ,function (req, res) {
@@ -30,7 +28,7 @@ router.post("/", middleware.isLoggedIn ,function (req, res) {
 });
 
 router.get("/new", middleware.isLoggedIn ,function (req,res) {
-    res.render("new");
+    res.render("campgrounds/new");
 });
 
 router.get("/:id",function (req,res) {
@@ -38,7 +36,7 @@ router.get("/:id",function (req,res) {
         if(err) {
             req.flash("error","Oops! Looks Like That There Is Something Wrong!");
         } else {
-            res.render("show",{campground: foundCampground});
+            res.render("campgrounds/show",{campground: foundCampground});
         }
     });
 });
@@ -49,7 +47,7 @@ router.get("/:id/edit", middleware.isLoggedIn, middleware.checkCampgroundOwnersh
         if(err) {
             req.flash("error","Oops! Looks Like That There Is Something Wrong!");
         } else {
-            res.render("edit",{campground: foundCampground});
+            res.render("campgrounds/edit",{campground: foundCampground});
         }
     });
 });
