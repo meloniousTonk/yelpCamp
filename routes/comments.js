@@ -7,7 +7,8 @@ var middleware = require("../middleware");
 router.get("/new",middleware.isLoggedIn ,function (req, res) {
     Campground.findOne({"_id" : req.params.id},function (err, foundCampground) {
         if(err) {
-            console.log(err);
+            req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+            res.redirect("back");
         } else {
             res.render("newComment",{campground: foundCampground});
         }
@@ -17,17 +18,20 @@ router.get("/new",middleware.isLoggedIn ,function (req, res) {
 router.post("/",middleware.isLoggedIn ,function (req, res) {
     Campground.findOne({"_id" : req.params.id},function (err, foundCampground) {
         if(err) {
-            console.log(err);
+            req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+            res.redirect("back");
         } else {
             Comment.create(req.body,function (err,commentCreated) {
                 if(err){
-                    console.log(err);
+                    req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+                    res.redirect("back");
                 } else {
                     commentCreated.author.id = req.user._id;
                     commentCreated.author.username = req.user.username;
                     commentCreated.save();
                     foundCampground.comments.push(commentCreated._id);
                     foundCampground.save();
+                    req.flash("success","Your Comment Has Been Posted Successfully!");
                     res.redirect("/campgrounds/"+req.params.id);
                 }
             });
@@ -38,7 +42,8 @@ router.post("/",middleware.isLoggedIn ,function (req, res) {
 router.get("/:commentID/edit",middleware.isLoggedIn, middleware.checkCommentOwnership, function (req, res) {
     Campground.findOne({"_id" : req.params.id},function (err, foundCampground) {
         if(err) {
-            console.log(err);
+            req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+            res.redirect("back");
         } else {
             Comment.findOne({"_id" : req.params.commentID},function (err, foundComment) {
                 res.render("editComment",{campground: foundCampground, comment: foundComment});
@@ -50,8 +55,10 @@ router.get("/:commentID/edit",middleware.isLoggedIn, middleware.checkCommentOwne
 router.put("/:commentID",middleware.isLoggedIn, middleware.checkCommentOwnership ,function (req, res) {
     Comment.findOneAndUpdate({"_id" : req.params.commentID}, req.body, function (err) {
         if(err) {
-            console.log(err);
+            req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+            res.redirect("back");
         } else {
+            req.flash("success", "Your Comment Has Been Updated Successfully!");
             res.redirect("/campgrounds/" + req.params.id);
         }
     });
@@ -60,8 +67,10 @@ router.put("/:commentID",middleware.isLoggedIn, middleware.checkCommentOwnership
 router.delete("/:commentID", middleware.isLoggedIn, middleware.checkCommentOwnership, function (req, res) {
     Comment.findOneAndDelete({"_id" : req.params.commentID}, function (err) {
         if(err) {
-            console.log(err);
+            req.flash("error","Oops! Looks Like That There Is Something Wrong!");
+            res.redirect("back");
         } else {
+            req.flash("success", "Your Comment Has Been Deleted Successfully!");
             res.redirect("/campgrounds/" + req.params.id);
         }
     })
